@@ -4,22 +4,31 @@
 .testimoniales-container {
     width: 100%;
     display: flex;
-    flex-direction: column; // Los elementos se apilan verticalmente por defecto (pantallas pequeñas)
-    justify-content: center; // Centramos los elementos en pantallas pequeñas
-    align-items: center; // Alineamos los elementos al centro
+    flex-direction: column; // El título se muestra arriba
+    justify-content: center;
+    align-items: center;
     gap: 10px;
     padding: 1rem;
 
+    // Estilos para el título
+    h2 {
+        text-align: center; // Centra el texto del título
+        font-size: 2rem;
+        margin-bottom: 2rem; // Añade un espacio entre el título y los testimoniales
+        color: v.$primario; // Color personalizado
+        width: 100%; // Asegura que ocupe el ancho del contenedor
+    }
+
     > div {
-        flex: 1 1 100%; // Cada imagen ocupa el 100% del ancho en pantallas pequeñas
-        max-width: 100%; // Asegura que las imágenes no sobrepasen el contenedor
+        flex: 1 1 100%;
+        max-width: 100%;
         border-radius: 0.5rem;
         transition: 0.5s ease-in-out;
         cursor: pointer;
         box-shadow: 1px 5px 15px #1e0e3e;
         position: relative;
         overflow: hidden;
-        height: auto; // Ajusta la altura automáticamente en pantallas pequeñas
+        height: auto;
 
         &:nth-of-type(1) {
             background: url("../img/galeria/comida2.jpg") no-repeat 50% / cover;
@@ -91,17 +100,16 @@
         }
     }
 
-    // Ajustes para pantallas mayores a 750px (disposición horizontal)
     @include m.tablet {
-        flex-direction: row; // Los elementos se disponen en fila horizontal
-        flex-wrap: wrap; // Permite que los elementos se ajusten en múltiples filas si es necesario
-        justify-content: center; // Centramos los elementos horizontalmente
-        align-items: center; // Centramos los elementos verticalmente
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
 
         > div {
-            flex: 0 0 120px; // Tamaño original en pantallas grandes
-            max-width: auto; // Asegura que los elementos se ajusten
-            height: 400px; // Mantiene la altura fija en pantallas grandes
+            flex: 0 0 120px;
+            max-width: auto;
+            height: 400px;
         }
     }
 }
