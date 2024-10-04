@@ -4,83 +4,104 @@
 .testimoniales-container {
     width: 100%;
     display: flex;
-    justify-content: center;
-    height: 500px;
+    flex-direction: column; // Los elementos se apilan verticalmente por defecto (pantallas pequeñas)
+    justify-content: center; // Centramos los elementos en pantallas pequeñas
+    align-items: center; // Alineamos los elementos al centro
     gap: 10px;
-  
+    padding: 1rem;
+
     > div {
-      flex: 0 0 120px;
-      border-radius: 0.5rem;
-      transition: 0.5s ease-in-out;
-      cursor: pointer;
-      box-shadow: 1px 5px 15px #1e0e3e;
-      position: relative;
-      overflow: hidden;
-  
-      &:nth-of-type(1) {
-        background: url("../img/galeria/comida2.jpg") no-repeat 50% / cover;
-        filter: brightness(0.6); /* Degradado oscuro */
-      }
-      &:nth-of-type(2) {
-        background: url("../img/galeria/comida3.jpg") no-repeat 50% / cover;
-        filter: brightness(0.6); /* Degradado oscuro */
-      }
-      &:nth-of-type(3) {
-        background: url("../img/galeria/comida4.jpg") no-repeat 50% / cover;
-        filter: brightness(0.6); /* Degradado oscuro */
-      }
-      &:nth-of-type(4) {
-        background: url("../img/galeria/comida6.jpg") no-repeat 50% / cover;
-        filter: brightness(0.6); /* Degradado oscuro */
-      }
-      &:nth-of-type(5) {
-        background: url("../img/galeria/costilla.jpg") no-repeat 50% / cover;
-        filter: brightness(0.6); /* Degradado oscuro */
-      }
-  
-      .testimoniales-content {
-        font-size: 1.5rem;
-        color: #ffffff; /* Color base para el contenido */
-        display: flex;
-        align-items: center;
-        padding: 15px;
-        opacity: 0;
-        flex-direction: column;
-        height: 100%;
-        justify-content: flex-end;
-        background: rgb(2, 2, 46);
-        background: linear-gradient(
-          0deg,
-          rgba(2, 2, 46, 0.8) 0%,
-          rgba(0, 0, 0, 0) 100%
-        );
-        transform: translateY(100%);
-        transition: opacity 0.5s ease-in-out, transform 0.5s 0.2s;
-        visibility: hidden;
-  
-        h2 {
-          color: v.$blanco; /* Color personalizado para los h2 (naranja tomillo) */
+        flex: 1 1 100%; // Cada imagen ocupa el 100% del ancho en pantallas pequeñas
+        max-width: 100%; // Asegura que las imágenes no sobrepasen el contenedor
+        border-radius: 0.5rem;
+        transition: 0.5s ease-in-out;
+        cursor: pointer;
+        box-shadow: 1px 5px 15px #1e0e3e;
+        position: relative;
+        overflow: hidden;
+        height: auto; // Ajusta la altura automáticamente en pantallas pequeñas
+
+        &:nth-of-type(1) {
+            background: url("../img/galeria/comida2.jpg") no-repeat 50% / cover;
+            filter: brightness(0.6);
         }
-  
-        span {
-          display: block;
-          margin-top: 5px;
-          font-size: 1.2rem;
-          color: v.$blanco; /* Color personalizado para los span (tono trigo claro) */
+
+        &:nth-of-type(2) {
+            background: url("../img/galeria/comida3.jpg") no-repeat 50% / cover;
+            filter: brightness(0.6);
         }
-      }
-  
-      &:hover {
-        flex: 0 0 250px;
-        box-shadow: 1px 3px 15px #7645d8;
-        transform: translateY(-30px);
-      }
-  
-      &:hover .testimoniales-content {
-        opacity: 1;
-        transform: translateY(0%);
-        visibility: visible;
-      }
+
+        &:nth-of-type(3) {
+            background: url("../img/galeria/comida4.jpg") no-repeat 50% / cover;
+            filter: brightness(0.6);
+        }
+
+        &:nth-of-type(4) {
+            background: url("../img/galeria/comida6.jpg") no-repeat 50% / cover;
+            filter: brightness(0.6);
+        }
+
+        &:nth-of-type(5) {
+            background: url("../img/galeria/costilla.jpg") no-repeat 50% / cover;
+            filter: brightness(0.6);
+        }
+
+        .testimoniales-content {
+            font-size: 1.5rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            opacity: 0;
+            flex-direction: column;
+            height: 100%;
+            justify-content: flex-end;
+            background: rgb(2, 2, 46);
+            background: linear-gradient(
+              0deg,
+              rgba(2, 2, 46, 0.8) 0%,
+              rgba(0, 0, 0, 0) 100%
+            );
+            transform: translateY(100%);
+            transition: opacity 0.5s ease-in-out, transform 0.5s 0.2s;
+            visibility: hidden;
+
+            h2 {
+                color: v.$blanco;
+            }
+
+            span {
+                display: block;
+                margin-top: 5px;
+                font-size: 1.2rem;
+                color: v.$blanco;
+            }
+        }
+
+        &:hover {
+            flex: 0 0 250px;
+            box-shadow: 1px 3px 15px #7645d8;
+            transform: translateY(-30px);
+        }
+
+        &:hover .testimoniales-content {
+            opacity: 1;
+            transform: translateY(0%);
+            visibility: visible;
+        }
     }
-  }
-  
+
+    // Ajustes para pantallas mayores a 750px (disposición horizontal)
+    @include m.tablet {
+        flex-direction: row; // Los elementos se disponen en fila horizontal
+        flex-wrap: wrap; // Permite que los elementos se ajusten en múltiples filas si es necesario
+        justify-content: center; // Centramos los elementos horizontalmente
+        align-items: center; // Centramos los elementos verticalmente
+
+        > div {
+            flex: 0 0 120px; // Tamaño original en pantallas grandes
+            max-width: auto; // Asegura que los elementos se ajusten
+            height: 400px; // Mantiene la altura fija en pantallas grandes
+        }
+    }
+}
