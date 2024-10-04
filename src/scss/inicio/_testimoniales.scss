@@ -1,0 +1,86 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.testimoniales-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    gap: 10px;
+  
+    > div {
+      flex: 0 0 120px;
+      border-radius: 0.5rem;
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+      box-shadow: 1px 5px 15px #1e0e3e;
+      position: relative;
+      overflow: hidden;
+  
+      &:nth-of-type(1) {
+        background: url("../img/galeria/comida2.jpg") no-repeat 50% / cover;
+        filter: brightness(0.6); /* Degradado oscuro */
+      }
+      &:nth-of-type(2) {
+        background: url("../img/galeria/comida3.jpg") no-repeat 50% / cover;
+        filter: brightness(0.6); /* Degradado oscuro */
+      }
+      &:nth-of-type(3) {
+        background: url("../img/galeria/comida4.jpg") no-repeat 50% / cover;
+        filter: brightness(0.6); /* Degradado oscuro */
+      }
+      &:nth-of-type(4) {
+        background: url("../img/galeria/comida6.jpg") no-repeat 50% / cover;
+        filter: brightness(0.6); /* Degradado oscuro */
+      }
+      &:nth-of-type(5) {
+        background: url("../img/galeria/costilla.jpg") no-repeat 50% / cover;
+        filter: brightness(0.6); /* Degradado oscuro */
+      }
+  
+      .testimoniales-content {
+        font-size: 1.5rem;
+        color: #ffffff; /* Color base para el contenido */
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        opacity: 0;
+        flex-direction: column;
+        height: 100%;
+        justify-content: flex-end;
+        background: rgb(2, 2, 46);
+        background: linear-gradient(
+          0deg,
+          rgba(2, 2, 46, 0.8) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        transform: translateY(100%);
+        transition: opacity 0.5s ease-in-out, transform 0.5s 0.2s;
+        visibility: hidden;
+  
+        h2 {
+          color: v.$blanco; /* Color personalizado para los h2 (naranja tomillo) */
+        }
+  
+        span {
+          display: block;
+          margin-top: 5px;
+          font-size: 1.2rem;
+          color: v.$blanco; /* Color personalizado para los span (tono trigo claro) */
+        }
+      }
+  
+      &:hover {
+        flex: 0 0 250px;
+        box-shadow: 1px 3px 15px #7645d8;
+        transform: translateY(-30px);
+      }
+  
+      &:hover .testimoniales-content {
+        opacity: 1;
+        transform: translateY(0%);
+        visibility: visible;
+      }
+    }
+  }
+  
