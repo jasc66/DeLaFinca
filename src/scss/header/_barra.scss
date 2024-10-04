@@ -8,16 +8,20 @@
     position: relative;
 
     .logo {
-        width: 50%;
-        margin: 0 auto;
+        margin-right: auto;
 
-        @include m.tablet {
-            width: 20rem;
-            margin: 0;
+        .logo-img {
+            width: auto;
+            max-width: 200px;
+            padding-right: 3rem;
+
+            @include m.tablet {
+                max-width: 150px;
+                padding-right: 3rem;
+            }
         }
     }
 
-    // Icono del menú hamburguesa para pantallas pequeñas
     .menu-hamburguesa {
         display: block;
         cursor: pointer;
@@ -34,20 +38,18 @@
             transition: all 0.3s ease;
         }
 
-        // Escondemos el icono hamburguesa en pantallas grandes
         @include m.tablet {
-            display: none;
+            display: none; // El menú hamburguesa desaparecerá en pantallas grandes
         }
     }
 
-    // Menú de navegación para pantallas pequeñas
     .nav-principal {
-        display: none; // Oculto en pantallas pequeñas por defecto
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.8); // Fondo oscuro con transparencia
+        background-color: rgba(0, 0, 0, 0.8);
         z-index: 9;
         opacity: 0;
         visibility: hidden;
@@ -57,7 +59,7 @@
             padding: 1rem;
             text-align: center;
             display: block;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: v.$blanco;
             background-color: v.$primario;
             margin: 5px 0;
@@ -69,14 +71,13 @@
             background-color: v.$secundario;
         }
 
-        // Cuando el menú está activo
         &.activo {
             display: block;
             opacity: 1;
             visibility: visible;
         }
 
-        // Mostramos el menú completo en pantallas grandes (mayores a 750px)
+        // Ajustes para pantallas grandes
         @include m.tablet {
             display: flex;
             justify-content: space-between;
@@ -88,7 +89,7 @@
 
             a {
                 padding: 1rem 2rem;
-                font-size: 1.6rem;
+                font-size: 1.8rem;
                 background-color: transparent;
                 color: v.$blanco;
                 margin: 0;
@@ -99,10 +100,19 @@
                 color: v.$secundario;
             }
         }
+
+        // Ajustes para pantallas entre 740px y 840px
+        @media (max-width: 840px) and (min-width: 740px) {
+            a {
+                padding: 1rem;
+                font-size: 1.6rem; // Reducimos el tamaño de fuente para evitar que el menú se desborde
+                margin: 0.5rem;
+            }
+        }
     }
 }
 
-// Animación para el menú hamburguesa
+// Animación para el menú hamburguesa cuando está activo
 .menu-hamburguesa.active span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
