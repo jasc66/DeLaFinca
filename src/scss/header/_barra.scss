@@ -1,21 +1,116 @@
+@use 'base/variables' as v;
 @use 'base/mixins' as m;
 
 .barra {
     display: flex;
-    flex-direction: column;
-    @include m.tablet { 
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 
     .logo {
         width: 50%;
         margin: 0 auto;
 
-        @include m.tablet { 
+        @include m.tablet {
             width: 20rem;
             margin: 0;
         }
     }
+
+    // Icono del menú hamburguesa para pantallas pequeñas
+    .menu-hamburguesa {
+        display: block;
+        cursor: pointer;
+        width: 3rem;
+        height: 2.5rem;
+        position: relative;
+        z-index: 10;
+
+        span {
+            background-color: v.$blanco;
+            display: block;
+            height: 0.3rem;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        // Escondemos el icono hamburguesa en pantallas grandes
+        @include m.tablet {
+            display: none;
+        }
+    }
+
+    // Menú de navegación para pantallas pequeñas
+    .nav-principal {
+        display: none; // Oculto en pantallas pequeñas por defecto
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8); // Fondo oscuro con transparencia
+        z-index: 9;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+
+        a {
+            padding: 1rem;
+            text-align: center;
+            display: block;
+            font-size: 1.8rem;
+            color: v.$blanco;
+            background-color: v.$primario;
+            margin: 5px 0;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: v.$secundario;
+        }
+
+        // Cuando el menú está activo
+        &.activo {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        // Mostramos el menú completo en pantallas grandes (mayores a 750px)
+        @include m.tablet {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: static;
+            background-color: transparent;
+            opacity: 1;
+            visibility: visible;
+
+            a {
+                padding: 1rem 2rem;
+                font-size: 1.6rem;
+                background-color: transparent;
+                color: v.$blanco;
+                margin: 0;
+            }
+
+            a:hover {
+                background-color: transparent;
+                color: v.$secundario;
+            }
+        }
+    }
+}
+
+// Animación para el menú hamburguesa
+.menu-hamburguesa.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-hamburguesa.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburguesa.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
