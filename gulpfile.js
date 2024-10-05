@@ -12,52 +12,65 @@ const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
 const avif = require('gulp-avif');
 
-function css( done ) {
+// HTML - File Include
+const fileInclude = require('gulp-file-include');
+
+// JavaScript
+const concat = require('gulp-concat'); // Concatenar archivos JS
+const uglify = require('gulp-uglify'); // Minificar JS (opcional)
+
+// Función para procesar los archivos HTML y agregar los includes
+function html() {
+    return src(['*.html', 'src/**/*.html']) // Procesar los archivos HTML en raíz y src/
+        .pipe(fileInclude({
+            prefix: '@@', // Prefijo para incluir los archivos
+            basepath: '@file' // Usa la ruta relativa para encontrar los archivos parciales
+        }))
+        .on('error', function(err) { console.error('Error in HTML task', err); }) // Manejo de errores
+        .pipe(dest('build')); // Guardar los archivos procesados en build
+}
+
+// Función para procesar el CSS
+function css(done) {
     src('src/scss/app.scss')
-        .pipe( sourcemaps.init() )
-        .pipe( sass() )
-        .pipe( postcss([ autoprefixer(), cssnano() ]) )
-        .pipe( sourcemaps.write('.'))
-        .pipe( dest('build/css') )
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(postcss([autoprefixer(), cssnano()]))
+        .pipe(sourcemaps.write('.'))
+        .pipe(dest('build/css'));
 
     done();
 }
 
+// Función para procesar imágenes
 function imagenes() {
     return src('src/img/**/*')
-        .pipe( imagemin({ optimizationLevel: 3 }) )
-        .pipe( dest('build/img') )
+        .pipe(imagemin({ optimizationLevel: 3 }))
+        .pipe(dest('build/img'));
 }
 
-function versionWebp() {
-    const opciones = {
-        quality: 50
-    }
-    return src('src/img/**/*.{png,jpg}')
-        .pipe( webp( opciones ) )
-        .pipe( dest('build/img') )
-}
-function versionAvif() {
-    const opciones = {
-        quality: 50
-    }
-    return src('src/img/**/*.{png,jpg}')
-        .pipe( avif( opciones ) )
-        .pipe( dest('build/img'))
+// Función para procesar los archivos JavaScript
+function js() {
+    return src('src/scripts/**/*.js') // Seleccionar todos los archivos JS en src/js/
+        .pipe(sourcemaps.init()) // Inicializar sourcemaps
+        .pipe(concat('app.js')) // Concatenar en un solo archivo app.js
+        //.pipe(uglify()) // Minificar el JavaScript (opcional)
+        .pipe(sourcemaps.write('.')) // Escribir los sourcemaps
+        .pipe(dest('build/js')); // Guardar los archivos en build/js
 }
 
+// Vigilar cambios
 function dev() {
-    watch( 'src/scss/**/*.scss', css );
-    watch( 'src/img/**/*', imagenes );
+    watch('src/scss/**/*.scss', css);
+    watch('src/img/**/*', imagenes);
+    watch(['*.html', 'src/**/*.html'], html); // Vigilar los archivos HTML
+    watch('src/scripts/**/*.js', js); // Vigilar los archivos JS
 }
 
-
+// Exportar las tareas
 exports.css = css;
 exports.dev = dev;
 exports.imagenes = imagenes;
-exports.versionWebp = versionWebp;
-exports.versionAvif = versionAvif;
-exports.default = series( imagenes, versionWebp, versionAvif, css, dev  );
-
-// series - Se inicia una tarea, y hasta que finaliza, inicia la siguiente
-// parallel - Todas inician al mismo tiempo
+exports.html = html;
+exports.js = js;
+exports.default = series(imagenes, css, html, js, dev); // Ejecutar todas las tareas
