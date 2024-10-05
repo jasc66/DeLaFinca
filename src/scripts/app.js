@@ -1,15 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Manejo del menú hamburguesa
-    const menuHamburguesa = document.querySelector('.menu-hamburguesa');
-    const navPrincipal = document.querySelector('.nav-principal');
-
-    if (menuHamburguesa && navPrincipal) {
-        menuHamburguesa.addEventListener('click', function () {
-            navPrincipal.classList.toggle('activo');
-            menuHamburguesa.classList.toggle('active');
-        });
-    }
-
     // Cargar el header dinámicamente
     fetch('src/partials/header.html')
         .then(response => response.text())
@@ -55,6 +44,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     console.error('No se encontró el atributo data-header en el header.');
                 }
+
+                // Después de cargar el header, configuramos el menú hamburguesa
+                const menuHamburguesa = document.querySelector('.menu-hamburguesa');
+                const navPrincipal = document.querySelector('.nav-principal');
+
+                if (menuHamburguesa && navPrincipal) {
+                    menuHamburguesa.addEventListener('click', function () {
+                        navPrincipal.classList.toggle('activo');
+                        menuHamburguesa.classList.toggle('active');
+                    });
+                } else {
+                    console.error('No se encontró el menú hamburguesa o la navegación principal.');
+                }
+
             } else {
                 console.error('No se encontró el elemento con id="header"');
             }
