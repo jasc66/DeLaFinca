@@ -1,0 +1,59 @@
+$font-size-base: 16px;
+$background-white: #ffffff;
+$color-black: #000000;
+$transition-time: 0.5s;
+$background-gray-dark: #333;
+$color-white: #fff;
+$background-button: #555;
+$background-button-hover: #777;
+$background-high-contrast: #000000;
+$color-high-contrast: #ffffff;
+$background-light-mode: #f0f0f0;
+$background-dark-mode: #1d1d1d;
+$color-dark-mode: #e0e0e0;
+
+body {
+  font-size: $font-size-base;
+  background-color: $background-white;
+  color: $color-black;
+  transition: background-color $transition-time, color $transition-time, font-size $transition-time;
+}
+
+#accessibility-bar {
+  background-color: $background-gray-dark;
+  color: $color-white;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 1000;
+
+  button {
+    background-color: $background-button;
+    color: $color-white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $background-button-hover;
+    }
+  }
+}
+
+.high-contrast {
+  background-color: $background-high-contrast;
+  color: $color-high-contrast;
+}
+
+.light-mode {
+  background-color: $background-light-mode;
+  color: $color-black;
+}
+
+.dark-mode {
+  background-color: $background-dark-mode;
+  color: $color-dark-mode;
+}
