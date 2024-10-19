@@ -130,4 +130,23 @@
     }
 }
 
+.descripcion {
+    font-size: 1.8rem;
+    color: v.$blanco;
+    line-height: 1.4;
+
+    br + span { // Esto seleccionará el texto después de cada <br>
+        font-size: 1.6rem; // Haz más pequeño el texto para otros idiomas
+        color: v.$secundario; // Cambia el color del texto para resaltarlo
+        font-style: italic; // Aplica un estilo itálico para diferenciar
+    }
+
+    span.language-en {
+        color: v.$verdeOlivar; // Estilo específico para inglés
+    }
+
+    span.language-fr {
+        color: v.$amarilloMiel; // Estilo específico para francés
+    }
+}
 
