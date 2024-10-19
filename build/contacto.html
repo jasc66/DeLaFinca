@@ -1,68 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>De La Finca</title>
-            <!-- Favicon -->
-        <link rel="icon" href="build/img/favicon.ico" type="image/x-icon">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Bona+Nova&family=Raleway:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="build/css/app.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De La Finca</title>
+    <!-- Favicon -->
+    <link rel="icon" href="build/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bona+Nova&family=Raleway:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="build/css/app.css">
+</head>
 <body>
 <!-- Placeholder para el header -->
 <div id="header" data-header="contacto"></div>
 
-    <main class="contenedor contenido-principal">
-        <h2><span>Reserva tu</span>Mesa</h2>
+<main class="contenedor contenido-principal">
+    <h2><span>Reserva tu</span>Mesa</h2>
 
-        <div class="contenido-contacto">
-            <form class="formulario">
-                <div class="campo">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" placeholder="Tu Nombre">
+    <div class="contenido-contacto">
+        <form class="formulario" id="formularioReserva">
+            <div class="campo">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" placeholder="Tu Nombre" required>
+            </div>
+            <div class="campo">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" placeholder="Tu Teléfono" required>
+            </div>
+            <div class="campo">
+                <label for="personas">Número de Personas:</label>
+                <select id="personas" required>
+                    <option value="" disabled selected>-- Seleccione --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="mas">+4</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" required>
+                <div class="notificacion-horario" id="notificacionHorario">
+                    <p>El horario de reserva es de Lunes a Viernes: 12:00 - 22:00, y Sábados: 17:00 - 22:00.</p>
                 </div>
-                <div class="campo">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" placeholder="Tu Email">
-                </div>
-                <div class="campo">
-                    <label for="email">Número de Personas:</label>
-                    <select>
-                        <option value="" disabled selected>-- Seleccione --</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="mas">+4</option>
-                    </select>
-                </div>
+            </div>
+            <div class="campo">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" required>
+            </div>
+            <div class="campo">
+                <label for="tipo">Tipo de Reserva:</label>
+                <select id="tipo" required>
+                    <option value="" disabled selected>-- Seleccione --</option>
+                    <option value="almuerzo">Almuerzo</option>
+                    <option value="cena">Cena</option>
+                    <option value="evento">Evento Especial</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="notas">Notas o Solicitudes Especiales:</label>
+                <textarea id="notas" placeholder="Especifica si tienes alguna solicitud especial"></textarea>
+            </div>
+            <div class="campo">
+                <input type="submit" value="Enviar">
+            </div>
+        </form>
+    </div>
 
-                <div class="campo">
-                    <label for="hora">Hora:</label>
-                    <input type="time" id="hora" min="09:00" max="18:00">
-                </div>
-
-                <div class="campo">
-                    <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha">
-                </div>
-                <div class="campo">
-                    <input type="submit" value="Enviar"
-                </div>
-            </form>
+    <!-- Modal de notificación para horario -->
+    <div class="modal-horario" id="modalHorario">
+        <div class="modal-contenido">
+            <h2>Horario no permitido</h2>
+            <p id="mensajeHorario"></p>
+            <button class="modal-cerrar" id="cerrarModal">Cerrar</button>
         </div>
-    </main>
+    </div>
+</main>
 
-    <!-- Placeholder para el footer -->
-    <div id="footer"></div>
+<!-- Placeholder para el footer -->
+<div id="footer"></div>
 
-    <!-- Enlace al archivo JS procesado por Gulp -->
-    <script src="src/scripts/app.js"></script>
+<!-- Enlace al archivo JS procesado por Gulp -->
+<script src="src/scripts/app.js"></script>
 
+<!-- Script para enviar datos a WhatsApp -->
+<script src="src/scripts/contacto.js"></script>
 </body>
 </html>
