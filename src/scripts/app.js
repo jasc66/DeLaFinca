@@ -79,15 +79,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Cargar la barra de accesibilidad dinámicamente
-    fetch('src/partials/accesibilidad.html')
-    .then(response => response.text())
-    .then(data => {
-        const accessibilityBarContainer = document.getElementById('accessibility-bar');
-        if (accessibilityBarContainer) {
-            accessibilityBarContainer.innerHTML = data;
-        } else {
-            console.error('No se encontró el elemento con id="accessibility-bar"');
-        }
-    })
-    .catch(error => console.error('Error cargando la barra de accesibilidad:', error));
+    
 });

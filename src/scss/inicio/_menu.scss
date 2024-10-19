@@ -18,8 +18,17 @@
 }
 
 .grid-menu {
-    @include m.tablet { 
-        @include m.grid(2, 2rem);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: minmax(150px, auto); // Altura mínima, pero se ajusta según el contenido
+    gap: 2rem;
+
+    @include m.tablet {
+        grid-template-columns: repeat(2, 1fr); // 2 columnas en tablets y más grandes
+    }
+
+    @include m.desktop {
+        grid-template-columns: repeat(2, 1fr); // 3 columnas en pantallas grandes
     }
 }
 
@@ -27,6 +36,7 @@
     h3 {
         color: v.$blanco;
     }
+
     li {
         display: flex;
         flex-direction: column;
@@ -36,6 +46,9 @@
         padding: 1rem;
         background-color: rgba(0, 0, 0, 0.1); // Fondo ligero para mejorar visibilidad
         border-radius: 5px;
+
+        // Asegura que todos los elementos de menú tengan un tamaño mínimo uniforme
+        min-height: 120px;
 
         p {
             color: v.$blanco;
@@ -67,19 +80,22 @@
                 font-size: 2.2rem;
                 font-weight: 700;
                 text-align: right;
+                min-width: 100px; // Mantén un ancho mínimo para que los precios no salten
             }
         }
 
         .descripcion {
-            margin-top: 1rem;
-            font-size: 1.8rem;
-            color: v.$blanco;
-            line-height: 1.4;
-        }
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 8; // Limita a 2 líneas
+            -webkit-box-orient: vertical;
+            line-clamp: 3; // Versión estándar
+        }        
+        
     }
 }
 
-// Estilo para el enlace al menú completo
 .menu-completo-enlace {
     margin-top: 3rem;
     text-align: center;
@@ -113,3 +129,5 @@
         }
     }
 }
+
+
