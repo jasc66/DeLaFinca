@@ -10,7 +10,37 @@
     @include m.tablet { 
         min-height: 70rem;
     }
+    .barra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
+    .carrito-icono {
+        position: relative;
+        font-size: 2.5rem;
+        color: v.$blanco;
+        cursor: pointer;
+
+        #contadorCarrito {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: v.$secundario;
+            color: v.$blanco;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        &:hover {
+            color: v.$secundario;
+        }
+    }
     // Overlay oscuro
     &::before {
         content: '';
@@ -55,4 +85,92 @@
 }
 .header-contacto {
     background-image: url('/build/img/header_contacto.jpg');
+}
+
+.carrito-desplegable {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    z-index: 100;
+}
+
+.carrito-desplegable h2 {
+    text-align: center;
+    color: #a50e0e;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.carrito-desplegable .contenido-carrito {
+    text-align: left;
+}
+
+.carrito-desplegable div {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    
+}
+
+.carrito-desplegable .precio {
+    font-weight: bold;
+}
+
+/* Botón de eliminar alineado a la derecha */
+.carrito-desplegable button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.carrito-desplegable button:hover {
+    background-color: #c9302c;
+}
+
+button#confirmarCompra {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #a50e0e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button#confirmarCompra:hover {
+    background-color: #d9534f;
+}
+/* Estilo de cada ítem del carrito */
+.carrito-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Botón de eliminar alineado a la derecha */
+.carrito-item button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.carrito-item button:hover {
+    background-color: #c9302c;
 }

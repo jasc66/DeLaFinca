@@ -3,7 +3,7 @@
         <div class="barra">
             <div class="logo">
                 <img class="logo-img" src="build/img/LogoDeLaFinca.svg" alt="logo cafeteria">
-            </div>                
+            </div>
 
             <!-- Icono del menú hamburguesa para pantallas pequeñas -->
             <div class="menu-hamburguesa">
@@ -19,11 +19,25 @@
                 <a href="menu.html">Menú</a>
                 <a href="galeria.html">Galería</a>
                 <a href="contacto.html">Contacto</a>
-            </nav>
-        </div>
+                
+                <!-- Ícono del carrito -->
+                <a href="#" id="iconoCarrito" class="carrito-icono">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span id="contadorCarrito">0</span>
+                </a>
 
-        <div class="texto-header">
-            <h1></h1> <!-- El texto cambiará dinámicamente con JavaScript -->
+                <!-- Menú desplegable del carrito -->
+                <div id="carritoDesplegable" class="carrito-desplegable">
+                    <div class="contenido-carrito">
+                        <h2>Carrito de Compras</h2>
+                        <div id="carritoSeleccionados"></div> <!-- Aquí se mostrarán los platos seleccionados -->
+                        <button id="confirmarCompra">Confirmar Compra</button>
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
 </header>
+
+<script src="../scripts/carrito.js"></script>
+<script src="../scripts/contacto.js"></script>
