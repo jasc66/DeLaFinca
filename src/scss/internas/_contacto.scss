@@ -143,21 +143,9 @@
         color: v.$negro;
     }
 }
-.carritoSeleccionados button {
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-.carritoSeleccionados button:hover {
-    background-color: #c9302c;
-}
 
 button.agregar-carrito {
-    background-color: v.$primario;
+    background-color: v.$secundario;
     color: v.$negro;
     padding: 0.8rem 1.5rem;
     border: none;
