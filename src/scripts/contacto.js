@@ -53,24 +53,24 @@ if (formularioReserva) {
         });
 
         // Crear el mensaje completo para WhatsApp
-        var mensaje = `*Reserva en De La Finca*\n` +
-                      `*Nombre:* ${nombre}\n` +
-                      `*Teléfono:* ${telefono}\n` +
-                      `*Número de Personas:* ${personas}\n` +
-                      `*Hora:* ${hora}\n` +
-                      `*Fecha:* ${fecha}\n` +
-                      `*Tipo de Reserva:* ${tipo}\n` +
-                      `*Platos Seleccionados:*\n${mensajeCarrito}` +
-                      `*Notas:* ${notas}`;
+        var mensaje = `Reserva en De La Finca\n` +
+                      `Nombre: ${nombre}\n` +
+                      `Teléfono: ${telefono}\n` +
+                      `Número de Personas: ${personas}\n` +
+                      `Hora: ${hora}\n` +
+                      `Fecha: ${fecha}\n` +
+                      `Tipo de Reserva: ${tipo}\n` +
+                      `Platos Seleccionados:\n${mensajeCarrito}` +
+                      `Notas: ${notas}`;
 
         // Codificar el mensaje correctamente para URL
         var mensajeCodificado = encodeURIComponent(mensaje);
 
-        // Número de teléfono del restaurante
+        // Número de teléfono del restaurante sin espacios ni signos
         var telefonoRestaurante = '87109971';  // Cambia este número por el del restaurante
 
-        // Redirigir a WhatsApp usando el formato correcto
-        var url = `https://wa.me/${telefonoRestaurante}?text=${mensajeCodificado}`;
+        // Formato correcto para WhatsApp con wa.me (sin signos "+" ni otros caracteres)
+        var url = `https://wa.me/506${telefonoRestaurante}?text=${mensajeCodificado}`;
         window.open(url, '_blank');
 
         // Limpiar el carrito después de enviar el mensaje
