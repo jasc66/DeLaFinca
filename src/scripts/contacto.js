@@ -49,25 +49,28 @@ if (formularioReserva) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         let mensajeCarrito = '';
         carrito.forEach(item => {
-            mensajeCarrito += `- ${item.cantidad} x ${item.plato}%0A`;  // Eliminamos el precio aquí
+            mensajeCarrito += `- ${item.cantidad} x ${item.plato}\n`;  // Eliminamos el precio aquí y usamos salto de línea "\n"
         });
 
         // Crear el mensaje completo para WhatsApp
-        var mensaje = `*Reserva en De La Finca*%0A` +
-                      `*Nombre:* ${nombre}%0A` +
-                      `*Teléfono:* ${telefono}%0A` +
-                      `*Número de Personas:* ${personas}%0A` +
-                      `*Hora:* ${hora}%0A` +
-                      `*Fecha:* ${fecha}%0A` +
-                      `*Tipo de Reserva:* ${tipo}%0A` +
-                      `*Platos Seleccionados:*%0A${mensajeCarrito}` +
+        var mensaje = `*Reserva en De La Finca*\n` +
+                      `*Nombre:* ${nombre}\n` +
+                      `*Teléfono:* ${telefono}\n` +
+                      `*Número de Personas:* ${personas}\n` +
+                      `*Hora:* ${hora}\n` +
+                      `*Fecha:* ${fecha}\n` +
+                      `*Tipo de Reserva:* ${tipo}\n` +
+                      `*Platos Seleccionados:*\n${mensajeCarrito}` +
                       `*Notas:* ${notas}`;
+
+        // Codificar el mensaje correctamente para URL
+        var mensajeCodificado = encodeURIComponent(mensaje);
 
         // Número de teléfono del restaurante
         var telefonoRestaurante = '87109971';  // Cambia este número por el del restaurante
 
-        // Redirigir a WhatsApp
-        var url = `https://api.whatsapp.com/send?phone=${telefonoRestaurante}&text=${mensaje}`;
+        // Redirigir a WhatsApp usando el formato correcto
+        var url = `https://wa.me/${telefonoRestaurante}?text=${mensajeCodificado}`;
         window.open(url, '_blank');
 
         // Limpiar el carrito después de enviar el mensaje
