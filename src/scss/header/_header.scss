@@ -14,6 +14,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background-color: rgba(0, 0, 0, 0.5); // Fondo semitransparente para mejorar la visibilidad del nav
+        padding: 1rem 2rem;
+        border-radius: 10px;
     }
 
     .carrito-icono {
@@ -44,13 +47,13 @@
     // Overlay oscuro
     &::before {
         content: '';
-        background: rgba(0, 0, 0, 0.9); 
+        background: rgba(0, 0, 0, 0.7); // Reducir la opacidad del overlay
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        opacity: 0.9;
+        opacity: 0.5;
     }
 
     .contenido-header {

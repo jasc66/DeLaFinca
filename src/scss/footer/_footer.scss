@@ -3,37 +3,80 @@
 
 .footer {
     background-color: v.$primario;
+    color: v.$blanco;
+    padding: 5rem 0;
     .contenido-footer {
-        padding: 5rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 2rem;
+        background-color: v.$cafeOscuro;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
         @include m.tablet { 
-            @include m.grid(3, 2rem);
+            @include m.grid(4, 2rem);
+        }
+    }
+    .footer-box {
+        flex: 1 1 22%;
+        margin-bottom: 2rem;
+        text-align: center;
+
+        h3 {
+            font-family: v.$fuenteCursiva;
+            margin-bottom: 1rem;
+            font-size: 2.4rem;
+            color: v.$secundario;
+        }
+        p, a {
+            font-size: 1.8rem;
+            margin: 0.5rem 0;
+            color: v.$blanco;
+            text-decoration: none;
+
+            &:hover {
+                color: v.$secundario;
+            }
+        }
+    }
+    .ubicacion, .reservacion, .horario, .redes-sociales {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .ubicacion p, .reservacion p, .horario p {
+        margin: 0.5rem 0;
+    }
+    .reservacion a {
+        margin-top: 0.5rem;
+        padding: 0.5rem 1rem;
+        background-color: v.$secundario;
+        border-radius: 5px;
+        color: v.$negro;
+        font-weight: bold;
+
+        &:hover {
+            background-color: darken(v.$secundario, 10%);
+        }
+    }
+    .redes-sociales {
+        .icono-red-social {
+            font-size: 2.5rem;
+            margin: 0 1rem;
+            color: v.$blanco;
+
+            &:hover {
+                color: v.$secundario;
+            }
         }
     }
     .copyright {
         text-align: center;
-        margin: 0;
-        padding: 2rem;
+        margin: 2rem 0 0;
+        padding: 1rem;
+        background-color: v.$cafeOscuro;
+        border-top: 1px solid v.$grisClaro;
         color: v.$blanco;
     }
-}
-
-.footer-box {
-    font-family: v.$fuenteCursiva;
-    text-align: center;
-    margin-bottom: v.$separacion;
-    @include m.tablet { 
-        margin-bottom: 0;
-    }
-    h3 {
-        font-family: v.$fuenteCursiva;
-        margin: 0 0 1rem 0;
-        font-size: 2.4rem;
-        color: v.$secundario;
-    }
-    p, a {
-        font-size: 2rem;
-        margin: 0;
-    }
-
 }
